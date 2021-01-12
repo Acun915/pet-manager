@@ -9,6 +9,7 @@ import HomePageComponet from "../home-page/HomePageComponent";
 
 const PetManagerApp = () => {
   const [pets, setPets] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getPets();
@@ -17,8 +18,8 @@ const PetManagerApp = () => {
   const getPets = async () => {
     const response = await fetch(`http://localhost:8080/rest/pets`);
     const data = await response.json();
-    console.log(data);
     setPets(data);
+    setIsLoading(false);
   };
 
   return (
@@ -42,9 +43,11 @@ const PetManagerApp = () => {
               path="/pets/:id"
               exact
               render={(props) => {
-                const petId = Number(props.match.params.id);
-                const [currentPet] = pets.filter((pet) => pet.id === petId);
-                return <PetComponent pet={currentPet} />;
+                if (!isLoading) {
+                  const petId = Number(props.match.params.id);
+                  const [currentPet] = pets.filter((pet) => pet.id === petId);
+                  return <PetComponent pet={currentPet} />;
+                }
               }}
             />
           </Switch>
