@@ -32,7 +32,6 @@ public class ScheduledEventMapper {
         entity.setFrequency(dto.getFrequency());
         entity.setRepeatEveryNDays(dto.getRepeatEveryNDays());
         entity.setStartDate(dto.getStartDate());
-        entity.setCreatedAt(dto.getCreatedAt());
         entity.setPet(petRepository.findById(dto.getPetId()).get());
 
         return entity;

@@ -26,7 +26,7 @@ public class ScheduledEventEntity {
 
     private LocalDateTime startDate;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "PET_ID")
@@ -36,7 +36,6 @@ public class ScheduledEventEntity {
         this.type = type;
         this.frequency = frequency;
         this.startDate = startDate;
-        this.createdAt = LocalDateTime.now();
         this.pet = pet;
     }
 
