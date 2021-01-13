@@ -32,6 +32,7 @@ const AddScheduledEventComponent = ({ petId }) => {
               setScheduledEvent({ ...scheduledEvent, type: e.target.value })
             }
           >
+            <option value={null}>Select an option</option>
             <option value="Feeding">Feeding</option>
             <option value="Walking">Walking</option>
             <option value="Other">Other</option>
@@ -44,11 +45,15 @@ const AddScheduledEventComponent = ({ petId }) => {
             id="frequency"
             name="scheduledEvent[frequency]"
             onChange={(e) =>
-              setScheduledEvent({ ...scheduledEvent, type: e.target.value })
+              setScheduledEvent({
+                ...scheduledEvent,
+                frequency: e.target.value,
+              })
             }
           >
+            <option value={null}>Select an option</option>
             <option value="DAILY">Daily</option>
-            <option value="WEEKLY">Walking</option>
+            <option value="WEEKLY">Weekly</option>
             <option value="MONTHLY">Monthly</option>
           </select>
         </div>
@@ -59,9 +64,15 @@ const AddScheduledEventComponent = ({ petId }) => {
             type="datetime-local"
             id="start-time"
             name="scheduledEvent[startDate]"
-            value="2021-01-12T08:30"
+            defaultValue="2021-01-12T08:30"
             min="2021-01-07T00:00"
             max="2021-12-14T00:00"
+            onChange={(e) =>
+              setScheduledEvent({
+                ...scheduledEvent,
+                startDate: e.target.value,
+              })
+            }
           />
         </div>
         <button

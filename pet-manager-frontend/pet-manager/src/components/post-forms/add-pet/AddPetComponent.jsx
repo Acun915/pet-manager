@@ -7,12 +7,12 @@ const AddPetComponent = () => {
     e.preventDefault();
     fetch("http://localhost:8080/rest/pets", {
       method: "POST",
-      body: JSON.stringify({ name: pet.name, type: pet.type }),
+      body: JSON.stringify(pet),
       headers: { "Content-Type": "application/json" },
     })
       .then((response) => response.json())
       .then((json) => setPet(json.pet));
-    console.log(JSON.stringify({ pet }));
+    console.log(JSON.stringify(pet));
   };
 
   return (
