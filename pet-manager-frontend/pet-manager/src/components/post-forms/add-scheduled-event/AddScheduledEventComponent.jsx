@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 
-const AddScheduledEventComponent = ({ petId }) => {
-  {
-    console.log(petId);
-  }
+const AddScheduledEventComponent = ({ petId, refreshPets, closeModal }) => {
   const [scheduledEvent, setScheduledEvent] = useState({
     petId: petId,
   });
@@ -18,6 +15,8 @@ const AddScheduledEventComponent = ({ petId }) => {
       .then((response) => response.json())
       .then((json) => setScheduledEvent(json.scheduledEvent));
     console.log("This is the json", JSON.stringify(scheduledEvent));
+    refreshPets();
+    closeModal();
   };
 
   return (
@@ -75,14 +74,7 @@ const AddScheduledEventComponent = ({ petId }) => {
             }
           />
         </div>
-        <button
-          onClick={() => {
-            console.log(this);
-          }}
-          type="submit"
-        >
-          Add
-        </button>
+        <button type="submit">Add</button>
       </form>
     </div>
   );

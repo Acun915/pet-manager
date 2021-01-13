@@ -53,7 +53,9 @@ const PetManagerApp = () => {
                 if (!isLoading) {
                   const petId = Number(props.match.params.id);
                   const [currentPet] = pets.filter((pet) => pet.id === petId);
-                  return <PetComponent pet={currentPet} />;
+                  return (
+                    <PetComponent pet={currentPet} onDataChange={getPets} />
+                  );
                 }
               }}
             />

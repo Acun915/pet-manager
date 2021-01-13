@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AddScheduledEventComponent from "../post-forms/add-scheduled-event/AddScheduledEventComponent";
 import "../modal.css";
 
-const PetComponent = ({ pet }) => {
+const PetComponent = ({ pet, onDataChange }) => {
   const closeAddScheduledEventModal = () => {
     const addPet = document.querySelector(".modal");
     const overlay = document.querySelector(".overlay");
@@ -37,7 +37,11 @@ const PetComponent = ({ pet }) => {
 
       <div className="modal hidden">
         <button onClick={closeAddScheduledEventModal}>&times;</button>
-        <AddScheduledEventComponent petId={pet.id} />
+        <AddScheduledEventComponent
+          petId={pet.id}
+          refreshPets={onDataChange}
+          closeModal={closeAddScheduledEventModal}
+        />
       </div>
 
       <div className="overlay hidden"></div>
