@@ -37,13 +37,17 @@ const PetManagerApp = () => {
             <Route
               path="/pets"
               exact
-              render={(props) => (
-                <YourPetsComponent
-                  pets={pets}
-                  onDataChange={getPets}
-                  {...props}
-                />
-              )}
+              render={(props) => {
+                if (!isLoading) {
+                  return (
+                    <YourPetsComponent
+                      pets={pets}
+                      onDataChange={getPets}
+                      {...props}
+                    />
+                  );
+                }
+              }}
             />
 
             <Route
