@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./PetManagerApp.css";
 import PetComponent from "../pet/PetComponent";
 import HomePageComponet from "../home-page/HomePageComponent";
+import DailyFeedingComponent from "../daily-feeding/DailyFeedingComponent";
 
 const PetManagerApp = () => {
   const [pets, setPets] = useState([]);
@@ -46,6 +47,16 @@ const PetManagerApp = () => {
                       {...props}
                     />
                   );
+                }
+              }}
+            />
+
+            <Route
+              path="/dailyfeeding"
+              exact
+              render={() => {
+                if (!isLoading) {
+                  return <DailyFeedingComponent pets={pets} />;
                 }
               }}
             />
