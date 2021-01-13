@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddPetComponent from "../post-forms/add-pet/AddPetComponent";
 import "./YourPets.css";
 import "../modal.css";
 
-const YourPetsComponent = ({ pets }) => {
+const YourPetsComponent = ({ pets, onDataChange }) => {
   const closeAddPetModal = () => {
     const addPet = document.querySelector(".modal");
     const overlay = document.querySelector(".overlay");
@@ -39,7 +39,10 @@ const YourPetsComponent = ({ pets }) => {
 
       <div className="modal hidden">
         <button onClick={closeAddPetModal}>&times;</button>
-        <AddPetComponent />
+        <AddPetComponent
+          refreshPets={onDataChange}
+          closeModal={closeAddPetModal}
+        />
       </div>
 
       <div className="overlay hidden"></div>

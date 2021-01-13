@@ -16,6 +16,7 @@ const PetManagerApp = () => {
   }, []);
 
   const getPets = async () => {
+    console.log("getPets() used");
     const response = await fetch(`http://localhost:8080/rest/pets`);
     const data = await response.json();
     setPets(data);
@@ -36,7 +37,13 @@ const PetManagerApp = () => {
             <Route
               path="/pets"
               exact
-              render={(props) => <YourPetsComponent pets={pets} {...props} />}
+              render={(props) => (
+                <YourPetsComponent
+                  pets={pets}
+                  onDataChange={getPets}
+                  {...props}
+                />
+              )}
             />
 
             <Route

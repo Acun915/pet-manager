@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AddPetComponent = () => {
+const AddPetComponent = ({ refreshPets, closeModal }) => {
   const [pet, setPet] = useState();
 
   const submit = (e) => {
@@ -13,6 +13,8 @@ const AddPetComponent = () => {
       .then((response) => response.json())
       .then((json) => setPet(json.pet));
     console.log(JSON.stringify(pet));
+    refreshPets();
+    closeModal();
   };
 
   return (
