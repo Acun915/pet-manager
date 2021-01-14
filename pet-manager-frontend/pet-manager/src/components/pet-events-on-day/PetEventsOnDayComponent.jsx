@@ -1,5 +1,6 @@
 import React from "react";
 import ToggleSwitchComponent from "../toggle-switch/ToggleSwitchComponent.jsx";
+import { getTimeStringFromDateTimeString } from "../../utils/DateMapper.js";
 
 const PetEventsOnDayComponent = ({ scheduledEvents }) => {
   return (
@@ -7,8 +8,9 @@ const PetEventsOnDayComponent = ({ scheduledEvents }) => {
       <table>
         <tbody>
           {scheduledEvents.map((scheduledEvent) => {
-            const [, timeWithSeconds] = scheduledEvent.startDate.split("T");
-            const time = timeWithSeconds.split(":", 2).join(":");
+            const time = getTimeStringFromDateTimeString(
+              scheduledEvent.startDate
+            );
 
             return (
               <tr>
