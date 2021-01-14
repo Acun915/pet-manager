@@ -3,6 +3,8 @@ import PetEventsOnDayComponent from "../pet-events-on-day/PetEventsOnDayComponen
 import "./DailyFeedingComponent.css";
 
 const DailyFeedingComponent = ({ pets }) => {
+  const today = new Date();
+  console.log(today);
   return (
     <div className="events">
       {pets.map((pet) => {

@@ -1,6 +1,6 @@
 export const getTimeStringFromDateTimeString = (dateTimeString) => {
   const [, timeWithSeconds] = dateTimeString.split("T");
-  const time = timeWithSeconds.split(":", 2).join(":");
+  const timeString = timeWithSeconds.split(":", 2).join(":");
 
-  return time;
+  return timeString;
 };
