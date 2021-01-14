@@ -1,0 +1,12 @@
+a {
+  text-decoration: none;
+}
+
+.navbar {
+  display: flex;
+}
+
+.nav-item {
+  margin: 10px;
+  padding: 10px;
+}
