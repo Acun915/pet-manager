@@ -1,35 +1,36 @@
 import React, { useState } from "react";
+import * as petsApi from "../../../api/petsApi.js";
 
-const AddScheduledEventComponent = ({ petId, refreshPets, closeModal }) => {
+const AddScheduledEventComponent = ({ petId, closeModal }) => {
   const [scheduledEvent, setScheduledEvent] = useState({
     petId: petId,
   });
 
-  const submit = (e) => {
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    const name = e.target.name;
+
+    setScheduledEvent({ ...scheduledEvent, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:8080/rest/pets/${petId}/scheduledEvents`, {
-      method: "POST",
-      body: JSON.stringify(scheduledEvent),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.json())
-      .then((json) => setScheduledEvent(json.scheduledEvent));
-    console.log("This is the json", JSON.stringify(scheduledEvent));
-    refreshPets();
+
+    petsApi.addPetScheduledEvent(petId, scheduledEvent);
+
     closeModal();
   };
 
   return (
     <div>
-      <form onSubmit={submit}>
+      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="type">Select type of the event:</label>
           <select
-            id="type"
-            name="scheduledEvent[type]"
-            onChange={(e) =>
-              setScheduledEvent({ ...scheduledEvent, type: e.target.value })
-            }
+            name="type"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
           >
             <option value={null}>Select an option</option>
             <option value="Feeding">Feeding</option>
@@ -41,14 +42,10 @@ const AddScheduledEventComponent = ({ petId, refreshPets, closeModal }) => {
         <div>
           <label htmlFor="frequency">Select frequncy of the event:</label>
           <select
-            id="frequency"
-            name="scheduledEvent[frequency]"
-            onChange={(e) =>
-              setScheduledEvent({
-                ...scheduledEvent,
-                frequency: e.target.value,
-              })
-            }
+            name="frequency"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
           >
             <option value={null}>Select an option</option>
             <option value="DAILY">Daily</option>
@@ -61,17 +58,13 @@ const AddScheduledEventComponent = ({ petId, refreshPets, closeModal }) => {
           <label htmlFor="start-time">Choose a time for event:</label>
           <input
             type="datetime-local"
-            id="start-time"
-            name="scheduledEvent[startDate]"
+            name="startDate"
             defaultValue="2021-01-12T08:30"
             min="2021-01-07T00:00"
             max="2021-12-14T00:00"
-            onChange={(e) =>
-              setScheduledEvent({
-                ...scheduledEvent,
-                startDate: e.target.value,
-              })
-            }
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
           />
         </div>
         <button type="submit">Add</button>

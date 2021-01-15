@@ -15,7 +15,7 @@ const HeaderComponent = () => {
         </div>
 
         <div className="nav-item">
-          <Link to="/dailyfeeding">Daily Feeding</Link>
+          <Link to="/daily-feeding">Daily Feeding</Link>
         </div>
       </nav>
     </header>

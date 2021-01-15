@@ -1,42 +1,46 @@
 import React, { useState } from "react";
+import * as petsApi from "../../../api/petsApi.js";
 
-const AddPetComponent = ({ refreshPets, closeModal }) => {
+const AddPetComponent = ({ closeModal }) => {
   const [pet, setPet] = useState();
 
-  const submit = (e) => {
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    const name = e.target.name;
+
+    setPet({ ...pet, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:8080/rest/pets", {
-      method: "POST",
-      body: JSON.stringify(pet),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.json())
-      .then((json) => setPet(json.pet));
-    console.log(JSON.stringify(pet));
-    refreshPets();
+
+    petsApi.addPet(pet);
+
     closeModal();
   };
 
   return (
     <div>
-      <form onSubmit={submit}>
+      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Your Pet Name:</label>
           <input
             type="text"
-            id="name"
-            name="pet[name]"
-            onChange={(e) => setPet({ ...pet, name: e.target.value })}
+            name="name"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
           ></input>
         </div>
         <div>
           <label htmlFor="type">Select type of yout pet:</label>
           <select
-            id="type"
-            name="pet[type]"
-            onChange={(e) => setPet({ ...pet, type: e.target.value })}
+            name="type"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
           >
-            <option value="selec-option">selec an option</option>
+            <option value="select-option">selec an option</option>
             <option value="Dog">Dog</option>
             <option value="Cat">Cat</option>
             <option value="Other">Other</option>

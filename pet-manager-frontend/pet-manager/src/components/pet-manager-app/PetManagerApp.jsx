@@ -7,6 +7,7 @@ import "./PetManagerApp.css";
 import PetComponent from "../pet/PetComponent";
 import HomePageComponet from "../home-page/HomePageComponent";
 import DailyFeedingComponent from "../daily-feeding/DailyFeedingComponent";
+import * as petsApi from "../../api/petsApi.js";
 
 const PetManagerApp = () => {
   const [pets, setPets] = useState([]);
@@ -17,13 +18,14 @@ const PetManagerApp = () => {
   }, []);
 
   const getPets = async () => {
-    console.log("getPets() used");
-    const response = await fetch(`http://localhost:8080/rest/pets`);
-    const data = await response.json();
+    const data = await petsApi.getAllPets();
     setPets(data);
     setIsLoading(false);
   };
 
+  if (isLoading) {
+    return <></>;
+  }
   return (
     <div className="app">
       <Router>
@@ -39,25 +41,21 @@ const PetManagerApp = () => {
               path="/pets"
               exact
               render={(props) => {
-                if (!isLoading) {
-                  return (
-                    <YourPetsComponent
-                      pets={pets}
-                      onDataChange={getPets}
-                      {...props}
-                    />
-                  );
-                }
+                return (
+                  <YourPetsComponent
+                    pets={pets}
+                    refreshPets={getPets}
+                    {...props}
+                  />
+                );
               }}
             />
 
             <Route
-              path="/dailyfeeding"
+              path="/daily-feeding"
               exact
               render={() => {
-                if (!isLoading) {
-                  return <DailyFeedingComponent pets={pets} />;
-                }
+                return <DailyFeedingComponent pets={pets} />;
               }}
             />
 
@@ -65,13 +63,9 @@ const PetManagerApp = () => {
               path="/pets/:id"
               exact
               render={(props) => {
-                if (!isLoading) {
-                  const petId = Number(props.match.params.id);
-                  const [currentPet] = pets.filter((pet) => pet.id === petId);
-                  return (
-                    <PetComponent pet={currentPet} onDataChange={getPets} />
-                  );
-                }
+                const petId = Number(props.match.params.id);
+                const [currentPet] = pets.filter((pet) => pet.id === petId);
+                return <PetComponent pet={currentPet} refreshPets={getPets} />;
               }}
             />
           </Switch>
@@ -84,5 +78,4 @@ const PetManagerApp = () => {
     </div>
   );
 };
-
 export default PetManagerApp;
