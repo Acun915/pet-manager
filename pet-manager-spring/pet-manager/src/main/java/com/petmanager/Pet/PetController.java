@@ -24,9 +24,9 @@ public class PetController {
     @CrossOrigin
     @PostMapping("/rest/pets")
     public PetDto addPet(@RequestBody PetDto petDto) {
-        System.out.println(petDto);
         return petService.addPet(petDto);
     }
+
 
     @GetMapping("rest/pets/{id}")
     public PetDto getPetById(@PathVariable long id){
