@@ -14,4 +14,10 @@ public class CompletedEventController {
     public CompletedEventDto addCompletedEvent(@PathVariable(name = "id") Long petId, @RequestBody CompletedEventDto completedEventDto) {
         return completedEventService.addCompletedEvent(completedEventDto);
     }
+
+    @CrossOrigin
+    @DeleteMapping("rest/pets/{id}/scheduledEvents/completedEvents")
+    public void deleteCompletedEventById(Long id) {
+        completedEventService.deleteCompletedEventById(id);
+    }
 }

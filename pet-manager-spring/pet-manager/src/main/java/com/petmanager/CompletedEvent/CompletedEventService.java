@@ -17,4 +17,8 @@ public class CompletedEventService {
 
         return completedEventDto;
     }
+
+    public void deleteCompletedEventById(Long id) {
+        completedEventRepository.deleteById(id);
+    }
 }
