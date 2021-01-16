@@ -18,7 +18,7 @@ public class ScheduledEventService {
     public ScheduledEventDto addScheduledEvent(ScheduledEventDto scheduledEventDto) {
         ScheduledEventEntity scheduledEventEntity = scheduledEventMapper.toEntity(scheduledEventDto);
 
-        scheduledEventRepository.save(scheduledEventEntity);
+        scheduledEventEntity = scheduledEventRepository.save(scheduledEventEntity);
 
         scheduledEventDto.setId(scheduledEventEntity.getId());
 

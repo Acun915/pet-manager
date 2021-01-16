@@ -1,12 +1,13 @@
 package com.petmanager.CompletedEvent;
 
 import com.petmanager.ScheduledEvent.ScheduledEventEntity;
-import com.petmanager.ScheduledEvent.ScheduledEventService;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Data
 public class CompletedEventEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

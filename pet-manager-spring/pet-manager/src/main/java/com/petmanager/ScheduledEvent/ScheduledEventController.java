@@ -12,7 +12,7 @@ public class ScheduledEventController {
 
     @CrossOrigin
     @PostMapping("rest/pets/{id}/scheduledEvents")
-    public ScheduledEventDto addPetScheduledEvent(@PathVariable(name = "id") long petId, @RequestBody ScheduledEventDto scheduledEventDto) {
+    public ScheduledEventDto addPetScheduledEvent(@PathVariable(name = "id") Long petId, @RequestBody ScheduledEventDto scheduledEventDto) {
         return scheduledEventService.addScheduledEvent(scheduledEventDto);
     }
 }
