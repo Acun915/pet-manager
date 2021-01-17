@@ -9,12 +9,12 @@ import java.util.List;
 
 @Data
 public class ScheduledEventDto {
-    long id;
+    private Long id;
     private String type;
     private Frequency frequency;
     private Integer repeatEveryNDays;
     private LocalDateTime startDate;
     private LocalDateTime createdAt;
-    private long petId;
+    private Long petId;
     private List<CompletedEventDto> completedEvents;
 }
