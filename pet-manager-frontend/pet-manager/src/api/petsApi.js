@@ -19,3 +19,23 @@ export const addPetScheduledEvent = (petId, scheduledEvent) => {
     headers: { "Content-Type": "application/json" },
   });
 };
+
+export const addCompletedEvent = (petId, completedEvent) => {
+  fetch(
+    `http://localhost:8080/rest/pets/${petId}/scheduledEvents/completedEvents`,
+    {
+      method: "POST",
+      body: JSON.stringify(completedEvent),
+      headers: { "Content-Type": "application/json" },
+    }
+  );
+};
+
+export const deleteCompletedEventById = (petId, id) => {
+  fetch(
+    `http://localhost:8080/rest/pets/${petId}/scheduledEvents/completedEvents/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
+};

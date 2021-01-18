@@ -4,3 +4,9 @@ export const getTimeStringFromDateTimeString = (dateTimeString) => {
 
   return time;
 };
+
+export const getDateStringFromDateTimeString = (dateTimeString) => {
+  const [date] = dateTimeString.split("T");
+
+  return date;
+};
