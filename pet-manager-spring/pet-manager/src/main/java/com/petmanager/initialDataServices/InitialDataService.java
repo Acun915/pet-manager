@@ -1,4 +1,4 @@
-package com.petmanager.services;
+package com.petmanager.initialDataServices;
 
 import com.petmanager.CompletedEvent.CompletedEventEntity;
 import com.petmanager.CompletedEvent.CompletedEventRepository;

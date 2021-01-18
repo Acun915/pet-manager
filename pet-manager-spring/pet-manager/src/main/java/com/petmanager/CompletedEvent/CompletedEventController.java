@@ -11,13 +11,13 @@ public class CompletedEventController {
 
     @CrossOrigin
     @PostMapping("rest/pets/{id}/scheduledEvents/completedEvents")
-    public CompletedEventDto addCompletedEvent(@PathVariable(name = "id") Long petId, @RequestBody CompletedEventDto completedEventDto) {
+    public CompletedEventDto addCompletedEvent(@RequestBody CompletedEventDto completedEventDto) {
         return completedEventService.addCompletedEvent(completedEventDto);
     }
 
     @CrossOrigin
-    @DeleteMapping("rest/pets/{id}/scheduledEvents/completedEvents")
-    public void deleteCompletedEventById(Long id) {
+    @DeleteMapping("rest/pets/{petId}/scheduledEvents/completedEvents/{id}")
+    public void deleteCompletedEventById(@PathVariable Long id) {
         completedEventService.deleteCompletedEventById(id);
     }
 }
