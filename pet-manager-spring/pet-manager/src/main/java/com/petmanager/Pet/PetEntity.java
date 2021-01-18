@@ -1,5 +1,6 @@
 package com.petmanager.Pet;
 
+import com.petmanager.Family.FamilyEntity;
 import com.petmanager.ScheduledEvent.ScheduledEventEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,9 @@ public class PetEntity {
 
     @OneToMany(mappedBy = "pet")
     private List<ScheduledEventEntity> scheduledEvents;
+
+    @ManyToOne
+    private FamilyEntity family;
 
     public PetEntity(String name, String type) {
         this.name = name;
