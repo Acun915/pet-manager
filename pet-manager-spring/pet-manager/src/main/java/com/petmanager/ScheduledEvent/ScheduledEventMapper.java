@@ -41,10 +41,11 @@ public class ScheduledEventMapper {
         entity.setRepeatEveryNDays(dto.getRepeatEveryNDays());
         entity.setStartDate(dto.getStartDate());
         entity.setPet(petRepository.findById(dto.getPetId()).get());
-        entity.setCompletedEvents(dto.getCompletedEvents()
-                .stream()
-                .map(completedEventMapper::toEntity)
-                .collect(Collectors.toList()));
+
+//        entity.setCompletedEvents(dto.getCompletedEvents()
+//                .stream()
+//                .map(completedEventMapper::toEntity)
+//                .collect(Collectors.toList()));
 
         return entity;
     }

@@ -1,8 +1,6 @@
 package com.petmanager.Pet;
 
 import com.petmanager.Pet.dtos.PetDto;
-import com.petmanager.ScheduledEvent.ScheduledEventMapper;
-import com.petmanager.ScheduledEvent.ScheduledEventService;
 import com.petmanager.ScheduledEvent.dtos.ScheduledEventDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

@@ -13,12 +13,7 @@ public class CompletedEventService {
     public CompletedEventDto addCompletedEvent(CompletedEventDto completedEventDto) {
         CompletedEventEntity completedEventEntity = completedEventMapper.toEntity(completedEventDto);
 
-        System.out.println(completedEventDto.getCompletedOn());
-        System.out.println(completedEventEntity.getCompletedOn());
-
-        CompletedEventEntity completedEventEntity2 =completedEventRepository.save(completedEventEntity);
-
-        System.out.println(completedEventEntity2.getCompletedOn());
+        completedEventRepository.save(completedEventEntity);
 
         return completedEventDto;
     }
