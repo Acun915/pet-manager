@@ -10,10 +10,13 @@ const PetEventsOnDayComponent = ({ scheduledEvents }) => {
   const today = getDateStringFromDateTimeString(dateJSON);
 
   const addCompletedEvent = (completedOn, scheduledEventId) => {
-    petsApi.addCompletedEvent(1, { completedOn, scheduledEventId });
+    petsApi.addCompletedEvent({ completedOn, scheduledEventId });
   };
 
-  addCompletedEvent(today, 3);
+  const deleteCompletedEvent = (completedOn, scheduledEvent) => {
+    petsApi.deleteCompletedEventById({ completedOn, scheduledEvent });
+  };
+
   return (
     <div>
       <table>
@@ -23,13 +26,24 @@ const PetEventsOnDayComponent = ({ scheduledEvents }) => {
               scheduledEvent.startDate
             );
 
-            console.log(scheduledEvent.completedEvents);
+            const isCompleted =
+              scheduledEvent.completedEvents.filter(
+                (e) => e.completedOn === today
+              ).length > 0;
 
             return (
               <tr>
                 <td>{time}</td>
                 <td>
-                  <ToggleSwitchComponent />
+                  <ToggleSwitchComponent
+                    onOn={() => {
+                      addCompletedEvent(today, scheduledEvent.id);
+                    }}
+                    onOff={() => {
+                      deleteCompletedEvent(today, scheduledEvent.id);
+                    }}
+                    checked={isCompleted}
+                  />
                 </td>
               </tr>
             );

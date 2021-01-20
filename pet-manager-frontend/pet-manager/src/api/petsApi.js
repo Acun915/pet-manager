@@ -12,30 +12,26 @@ export const addPet = (pet) => {
   });
 };
 
-export const addPetScheduledEvent = (petId, scheduledEvent) => {
-  fetch(`http://localhost:8080/rest/pets/${petId}/scheduledEvents`, {
+export const addPetScheduledEvent = (scheduledEvent) => {
+  fetch(`http://localhost:8080/rest/scheduledEvents`, {
     method: "POST",
     body: JSON.stringify(scheduledEvent),
     headers: { "Content-Type": "application/json" },
   });
 };
 
-export const addCompletedEvent = (petId, completedEvent) => {
-  fetch(
-    `http://localhost:8080/rest/pets/${petId}/scheduledEvents/completedEvents`,
-    {
-      method: "POST",
-      body: JSON.stringify(completedEvent),
-      headers: { "Content-Type": "application/json" },
-    }
-  );
+export const addCompletedEvent = (completedEvent) => {
+  fetch(`http://localhost:8080/rest/completedEvents`, {
+    method: "POST",
+    body: JSON.stringify(completedEvent),
+    headers: { "Content-Type": "application/json" },
+  });
 };
 
-export const deleteCompletedEventById = (petId, id) => {
-  fetch(
-    `http://localhost:8080/rest/pets/${petId}/scheduledEvents/completedEvents/${id}`,
-    {
-      method: "DELETE",
-    }
-  );
+export const deleteCompletedEventById = (id) => {
+  fetch(`http://localhost:8080/rest/completedEvents`, {
+    method: "DELETE",
+    body: JSON.stringify(id),
+    headers: { "Content-Type": "application/json" },
+  });
 };

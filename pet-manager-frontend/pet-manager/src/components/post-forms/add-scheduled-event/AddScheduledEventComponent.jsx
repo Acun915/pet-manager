@@ -16,7 +16,7 @@ const AddScheduledEventComponent = ({ petId, closeModal }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    petsApi.addPetScheduledEvent(petId, scheduledEvent);
+    petsApi.addPetScheduledEvent(scheduledEvent);
 
     closeModal();
   };
