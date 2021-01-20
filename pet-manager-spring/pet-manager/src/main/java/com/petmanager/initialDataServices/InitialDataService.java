@@ -34,7 +34,7 @@ public class InitialDataService {
     public void init() {
         createDummyPets();
         createDummyScheduledEvents();
-        createDummyCompletedEvents();
+//        createDummyCompletedEvents();
     }
 
     private void createDummyPets() {
@@ -67,16 +67,16 @@ public class InitialDataService {
         scheduledEventRepository.save(scheduledEvent7);
     }
 
-    private void createDummyCompletedEvents() {
-        CompletedEventEntity completedEvent1 = new CompletedEventEntity("2021-18-10", scheduledEvent1);
-//        CompletedEventEntity completedEvent2 = new CompletedEventEntity(LocalDate.of(2021,1,16), scheduledEvent2);
-//        CompletedEventEntity completedEvent3 = new CompletedEventEntity(LocalDate.of(2021,1,16), scheduledEvent1);
-
-        completedEventRepository.save(completedEvent1);
-//        completedEventRepository.save(completedEvent2);
-//        completedEventRepository.save(completedEvent3);
-
-
-
-    }
+//    private void createDummyCompletedEvents() {
+//        CompletedEventEntity completedEvent1 = new CompletedEventEntity("2021-18-10", scheduledEvent1);
+////        CompletedEventEntity completedEvent2 = new CompletedEventEntity(LocalDate.of(2021,1,16), scheduledEvent2);
+////        CompletedEventEntity completedEvent3 = new CompletedEventEntity(LocalDate.of(2021,1,16), scheduledEvent1);
+//
+//        completedEventRepository.save(completedEvent1);
+////        completedEventRepository.save(completedEvent2);
+////        completedEventRepository.save(completedEvent3);
+//
+//
+//
+//    }
 }
