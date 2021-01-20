@@ -1,6 +1,7 @@
 package com.petmanager.initialDataServices;
 
 import com.petmanager.CompletedEvent.CompletedEventEntity;
+import com.petmanager.CompletedEvent.CompletedEventId;
 import com.petmanager.CompletedEvent.CompletedEventRepository;
 import com.petmanager.Pet.PetEntity;
 import com.petmanager.ScheduledEvent.ScheduledEventEntity;
@@ -28,11 +29,6 @@ public class InitialDataService {
 
     private ScheduledEventEntity scheduledEvent1;
     private ScheduledEventEntity scheduledEvent2;
-    private ScheduledEventEntity scheduledEvent3;
-    private ScheduledEventEntity scheduledEvent4;
-    private ScheduledEventEntity scheduledEvent5;
-    private ScheduledEventEntity scheduledEvent6;
-    private ScheduledEventEntity scheduledEvent7;
 
     @PostConstruct
     public void init() {
@@ -54,13 +50,13 @@ public class InitialDataService {
     private void createDummyScheduledEvents() {
         scheduledEvent1 = new ScheduledEventEntity("feeding", Frequency.DAILY, LocalDateTime.of(2021,1,10,8,0), pet1);
         scheduledEvent2 = new ScheduledEventEntity("feeding", Frequency.DAILY, LocalDateTime.of(2021,1,10,13,0), pet1);
-        scheduledEvent3 = new ScheduledEventEntity("feeding", Frequency.DAILY, LocalDateTime.of(2021,1,10,18,30), pet1);
+        ScheduledEventEntity scheduledEvent3 = new ScheduledEventEntity("feeding", Frequency.DAILY, LocalDateTime.of(2021, 1, 10, 18, 30), pet1);
 
-        scheduledEvent4 = new ScheduledEventEntity("feeding", Frequency.DAILY, LocalDateTime.of(2021,1,10,6,0), pet2);
-        scheduledEvent5 = new ScheduledEventEntity("feeding", Frequency.DAILY, LocalDateTime.of(2021,1,10,16,30), pet2);
+        ScheduledEventEntity scheduledEvent4 = new ScheduledEventEntity("feeding", Frequency.DAILY, LocalDateTime.of(2021, 1, 10, 6, 0), pet2);
+        ScheduledEventEntity scheduledEvent5 = new ScheduledEventEntity("feeding", Frequency.DAILY, LocalDateTime.of(2021, 1, 10, 16, 30), pet2);
 
-        scheduledEvent6 = new ScheduledEventEntity("feeding", Frequency.DAILY, LocalDateTime.of(2021,1,10,10,30), pet3);
-        scheduledEvent7 = new ScheduledEventEntity("feeding", Frequency.DAILY, LocalDateTime.of(2021,1,10,20,0), pet3);
+        ScheduledEventEntity scheduledEvent6 = new ScheduledEventEntity("feeding", Frequency.DAILY, LocalDateTime.of(2021, 1, 10, 10, 30), pet3);
+        ScheduledEventEntity scheduledEvent7 = new ScheduledEventEntity("feeding", Frequency.DAILY, LocalDateTime.of(2021, 1, 10, 20, 0), pet3);
 
         scheduledEventRepository.save(scheduledEvent1);
         scheduledEventRepository.save(scheduledEvent2);
@@ -72,12 +68,15 @@ public class InitialDataService {
     }
 
     private void createDummyCompletedEvents() {
-        CompletedEventEntity completedEvent1 = new CompletedEventEntity(LocalDate.of(2021,1,15), scheduledEvent1);
-        CompletedEventEntity completedEvent2 = new CompletedEventEntity(LocalDate.of(2021,1,16), scheduledEvent2);
-        CompletedEventEntity completedEvent3 = new CompletedEventEntity(LocalDate.of(2021,1,16), scheduledEvent1);
+        CompletedEventEntity completedEvent1 = new CompletedEventEntity("2021-18-10", scheduledEvent1);
+//        CompletedEventEntity completedEvent2 = new CompletedEventEntity(LocalDate.of(2021,1,16), scheduledEvent2);
+//        CompletedEventEntity completedEvent3 = new CompletedEventEntity(LocalDate.of(2021,1,16), scheduledEvent1);
 
         completedEventRepository.save(completedEvent1);
-        completedEventRepository.save(completedEvent2);
-        completedEventRepository.save(completedEvent3);
+//        completedEventRepository.save(completedEvent2);
+//        completedEventRepository.save(completedEvent3);
+
+
+
     }
 }

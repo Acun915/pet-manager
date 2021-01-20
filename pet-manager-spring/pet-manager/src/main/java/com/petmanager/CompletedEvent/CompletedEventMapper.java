@@ -1,8 +1,12 @@
 package com.petmanager.CompletedEvent;
 
+import com.petmanager.ScheduledEvent.ScheduledEventEntity;
 import com.petmanager.ScheduledEvent.ScheduledEventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 @Component
 @RequiredArgsConstructor
@@ -20,10 +24,11 @@ public class CompletedEventMapper {
     }
 
     public CompletedEventEntity toEntity(CompletedEventDto dto) {
-        CompletedEventEntity entity = new CompletedEventEntity();
+        String completedOn = dto.getCompletedOn();
 
-        entity.setCompletedOn(dto.getCompletedOn());
-        entity.setScheduledEvent(scheduledEventRepository.findById(dto.getScheduledEventId()).get());
+        ScheduledEventEntity scheduledEvent = scheduledEventRepository.findById(dto.getScheduledEventId()).get();
+
+        CompletedEventEntity entity = new CompletedEventEntity(completedOn, scheduledEvent);
 
         return entity;
     }

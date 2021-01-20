@@ -7,22 +7,23 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
+@IdClass(CompletedEventId.class)
 public class CompletedEventEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    private LocalDate completedOn;
+    @Id
+    private String completedOn;
 
     @ManyToOne
-    @JoinColumn(name = "SCHEDULED_EVENT_ID")
+    @JoinColumn(name = "SCHEDULED_EVENT")
+    @Id
     private ScheduledEventEntity scheduledEvent;
 
-    public CompletedEventEntity(LocalDate completedOn, ScheduledEventEntity scheduledEvent) {
+    public CompletedEventEntity(String completedOn, ScheduledEventEntity scheduledEvent) {
         this.completedOn = completedOn;
         this.scheduledEvent = scheduledEvent;
     }
