@@ -11,6 +11,7 @@ const YourPetsComponent = ({ pets, refreshPets }) => {
     <div className="main-container">
       <div className="your-pets">
         {pets.map((pet) => {
+          console.log(pet);
           return (
             <Link to={`/pets/${pet.id}`}>
               <div className="pet-container">

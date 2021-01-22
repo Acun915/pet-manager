@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ToggleSwitchComponent.css";
 
-const ToggleSwitchComponent = () => {
+const ToggleSwitchComponent = ({ onOn, onOff, checked }) => {
+  const [isChecked, setIsChecked] = useState(checked);
+
+  const handleSwitch = () => {
+    if (!isChecked) {
+      onOn();
+    } else {
+      onOff();
+    }
+  };
   return (
     <div>
       <label className="switch">
-        <input type="checkbox"></input>
+        <input
+          checked={isChecked}
+          type="checkbox"
+          onChange={() => {
+            handleSwitch();
+            setIsChecked(!isChecked);
+          }}
+        ></input>
         <span className="slider round"></span>
       </label>
     </div>
