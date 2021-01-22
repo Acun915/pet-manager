@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class UserDetailsImpl implements UserDetails {
-    private static final long serialVersionUID = 1L;
+//    private static final long serialVersionUID = 1L;
 
     private Long id;
 
@@ -22,19 +22,16 @@ public class UserDetailsImpl implements UserDetails {
 
     private String email;
 
-    private Long familyId;
-
     @JsonIgnore
     private String password;
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(Long id, String username, String email,Long familyId, String password,
+    public UserDetailsImpl(Long id, String username, String email, String password,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.familyId = familyId;
         this.password = password;
         this.authorities = authorities;
     }
@@ -48,7 +45,6 @@ public class UserDetailsImpl implements UserDetails {
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getFamily().getId(),
                 user.getPassword(),
                 authorities);
     }
@@ -74,14 +70,6 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public String getUsername() {
         return username;
-    }
-
-    public Long getFamilyId() {
-        return familyId;
-    }
-
-    public void setFamilyId(Long familyId) {
-        this.familyId = familyId;
     }
 
     @Override
