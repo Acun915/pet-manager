@@ -16,11 +16,9 @@ public class FamilyEntity {
 
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "FAMILY_ID")
+    @OneToMany(mappedBy = "family")
     private List<PetEntity> pets;
 
-    @OneToMany
-    @JoinColumn(name = "FAMILY_ID")
+    @OneToMany(mappedBy = "family")
     private List<User> members;
 }

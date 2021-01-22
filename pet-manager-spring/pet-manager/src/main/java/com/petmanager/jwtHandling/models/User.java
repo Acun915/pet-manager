@@ -41,6 +41,10 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "FAMILY_ID")
+    private FamilyEntity family;
+
     public User() {
     }
 

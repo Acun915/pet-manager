@@ -25,6 +25,7 @@ public class PetEntity {
     private List<ScheduledEventEntity> scheduledEvents;
 
     @ManyToOne
+    @JoinColumn(name = "FAMILY_ID")
     private FamilyEntity family;
 
     public PetEntity(String name, String type) {
