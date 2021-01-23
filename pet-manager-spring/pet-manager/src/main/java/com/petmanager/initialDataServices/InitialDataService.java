@@ -3,6 +3,8 @@ package com.petmanager.initialDataServices;
 import com.petmanager.CompletedEvent.CompletedEventEntity;
 import com.petmanager.CompletedEvent.CompletedEventId;
 import com.petmanager.CompletedEvent.CompletedEventRepository;
+import com.petmanager.Family.FamilyEntity;
+import com.petmanager.Family.FamilyRepository;
 import com.petmanager.Pet.PetEntity;
 import com.petmanager.ScheduledEvent.ScheduledEventEntity;
 import com.petmanager.Pet.PetRepository;
@@ -21,6 +23,7 @@ public class InitialDataService {
 
     private final PetRepository petRepository;
     private final ScheduledEventRepository scheduledEventRepository;
+    private final FamilyRepository familyRepository;
     private final CompletedEventRepository completedEventRepository;
 
     private PetEntity pet1;
@@ -30,17 +33,29 @@ public class InitialDataService {
     private ScheduledEventEntity scheduledEvent1;
     private ScheduledEventEntity scheduledEvent2;
 
+    private FamilyEntity familyEntity1;
+    private FamilyEntity familyEntity2;
+
     @PostConstruct
     public void init() {
-        createDummyPets();
-        createDummyScheduledEvents();
+//        createDummyFamilies();
+//        createDummyPets();
+//        createDummyScheduledEvents();
 //        createDummyCompletedEvents();
     }
 
+    private void createDummyFamilies() {
+        familyEntity1 = new FamilyEntity("domek");
+        familyEntity2 = new FamilyEntity("tarasy");
+
+        familyRepository.save(familyEntity1);
+        familyRepository.save(familyEntity2);
+    }
+
     private void createDummyPets() {
-        pet1 = new PetEntity("Burek", "dog");
-        pet2 = new PetEntity("Reksio", "dog");
-        pet3 = new PetEntity("Mruczek", "cat");
+        pet1 = new PetEntity("Burek", "dog", familyEntity1);
+        pet2 = new PetEntity("Reksio", "dog" , familyEntity1);
+        pet3 = new PetEntity("Mruczek", "cat", familyEntity2);
 
         petRepository.save(pet1);
         petRepository.save(pet2);

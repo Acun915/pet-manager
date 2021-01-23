@@ -28,9 +28,10 @@ public class PetEntity {
     @JoinColumn(name = "FAMILY_ID")
     private FamilyEntity family;
 
-    public PetEntity(String name, String type) {
+    public PetEntity(String name, String type, FamilyEntity family) {
         this.name = name;
         this.type = type;
+        this.family = family;
     }
 
 }

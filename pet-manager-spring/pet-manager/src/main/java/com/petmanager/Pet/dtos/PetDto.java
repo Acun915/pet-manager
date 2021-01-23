@@ -11,4 +11,5 @@ public class PetDto {
     private String name;
     private String type;
     private List<ScheduledEventDto> scheduledEvents;
+    private Long familyId;
 }
